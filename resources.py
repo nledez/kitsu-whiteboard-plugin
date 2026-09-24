@@ -1,5 +1,5 @@
 from flask import request
-from flask_restful import Resource
+from flask.views import MethodView
 from flask_jwt_extended import jwt_required
 
 from zou.app.mixin import ArgsMixin
@@ -8,7 +8,7 @@ from zou.app.services import persons_service
 from . import services
 
 
-class BoardsResource(Resource, ArgsMixin):
+class BoardsResource(MethodView, ArgsMixin):
 
     @jwt_required()
     def get(self):
@@ -37,7 +37,7 @@ class BoardsResource(Resource, ArgsMixin):
         return board.present(), 201
 
 
-class BoardResource(Resource, ArgsMixin):
+class BoardResource(MethodView, ArgsMixin):
 
     @jwt_required()
     def get(self, board_id):
